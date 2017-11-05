@@ -1,0 +1,12 @@
+Tällä viikolla olen tutustunut Vindiniumiin, ja yleisiin metodeihin, mitä AI:t käyttävät pelissä. Tällaisia ovat esim. Max^n ja Best-reply search. Olen myös tutkinut A* algoritmia ja sen Fringe search versiota. Olen myös tutustunut Vindiniumin Java aloituspakettiin. Tähän kuuluu muutama botti, ja tapa ottaa yhteyttä Vindinium palvelimeen, ja sieltä tulevan datan vastaanotto ja purku. Tämä viikko on mennyt asioiden selvittämiseen ja vindiniumiin tutustumiseen, sekä määrittelydokumentin kirjoittamiseen. Ohjelman koodaminen alkaa ensi viikolla. 
+
+6h käytetty koodin läpikäyntiin, algoritmien tutkimiseen, ja Vindiniumiin tutustumiseen
+
+Kysymyksiä:
+Tarvitseeko toteuttaa palvelimeen yhteydenotto ja sieltä tulevan datan käsittely itse, vai voiko käyttää valmista ratkaisua? Valmis ratkaisu löytyy Java aloituspaketista.
+
+Jos löydän jotain lisättävää/muutettavaa sopiiko määrittelydokumenttia muokata? Esimerkiksi en ole vielä tutustunut tarpeeksi päätöksenteko algoritmeihin, joten saatan lisätä niistä tietoa kun selviää mitä/millaista käytän.
+
+Java aloituspaketti: https://github.com/bstempi/vindinium-client
+
+
