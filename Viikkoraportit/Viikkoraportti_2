@@ -1,0 +1,7 @@
+Tällä viikolla olen keskittynyt tarvittavien luokkien suunnitteluun, ja luomiseen, sekä A* algoritmin kirjoittamiseen. Lisäksi otin valmiit ratkaisut palvelimen kanssa kommunikoimiseen, ja JSON tiedoston muuttamiseen ja lisäsin ne projektiin. Tästä syntyi ongelmia, sillä esimerkki ohjelmassa oli käytetty Maveniä, ja omaani olin asettanut Gradlen. Koska esimerkkiohjelmassa on paljon riippuvuuksia, sen sijaan että tuhlaisin aikaani yrittäessäni saada niitä toimimaan Gradlen kanssa siirryin käyttämään Maveniä.
+ Nämä valmiit luokat löytyvät kansioista dto ja bot, tosin tulen luultavasti muuttamaan bot kansiossa olevia luokkia vielä. A* algoritmi on nyt tehty, joskin A* polun takaisin kulkemisessa on vielä ongelmia, mutta se luultavasti saadaan kohta korjattua alkavalla viikolla. Algoritmin kanssa oli paljon erillaisia ongelmia, joista kaikkia en ole saanut vieläkään korjattua.
+ Testejä kirjoittaessa on ongelmia saada kartan luominen automatisoitua, mutta käyn ensi viikolla läpi koko koodin ja muokkaan muutamaa bot kansion luokkaa niin, että automatisoiminen käy helpommin. Suurin ongelma on luoda yhteydet eri solmujen välillä automaattisesti, ja tämän jälkeen tietää mikä on lyhin polku. Testit eivät nyt ole aivan kattavat juuri automatisaatio ongelmien takia, ja siksi että A* ei osaa vielä kertoa lyhintä polkua, joten testejä ei oikeastaan voi käyttää.
+ Lopuksi totean, että täytyy muistaa käyttää Gittiä useammin, unohdin sen käytön kokonaan tällä viikolla. 
+ 
+Aikaa käytetty noin 8 tuntia.
+
