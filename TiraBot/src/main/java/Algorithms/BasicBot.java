@@ -1,6 +1,8 @@
 package Algorithms;
 
+import Structures.MyHashMap;
 import bot.AdvancedGameState;
+import bot.Mine;
 import bot.Vertex;
 import com.google.api.client.http.*;
 import com.google.api.client.http.apache.ApacheHttpTransport;
@@ -8,6 +10,7 @@ import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.JsonObjectParser;
 import com.google.api.client.json.gson.GsonFactory;
 import dto.ApiKey;
+import dto.BotMove;
 import dto.GameState;
 import dto.Move;
 import org.apache.logging.log4j.LogManager;
@@ -49,9 +52,17 @@ public class BasicBot implements Callable<GameState> {
 
 
         //Game Loop
-        while (!gameState.getGame().isFinished()&&!gameState.getHero().isCrashed()){
-            Vertex next;
-        }
+        //Not yet implemented
+        /*while (!gameState.getGame().isFinished()&&!gameState.getHero().isCrashed()){
+            BotMove move;
+
+            MyHashMap<GameState.Position, Integer> distanceMap = new MyHashMap();
+            for(Mine m : advancedGameState.getMines().values()){
+                distanceMap.put(m.getPosition(), Astar.estimateDistance(m.getPosition(), advancedGameState.getMe().getPos()));
+            }
+
+
+        }*/
 
 
         return null;

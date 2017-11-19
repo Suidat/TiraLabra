@@ -1,0 +1,13 @@
+Tällä viikolla aloitin tekemään omia tietorakenteita ja botin päätöksentekoa. Lisäksi aloitin Main metodin rakentamisen, jolla kysytään tarvittavat tiedot käyttäjältä, ja sen jälkeen tuotetaan botti.
+MyHashMap luokalla on kattavat testit, ja luokka toimii. A* luokka on muokattu käyttämään MyHashMap luokkaa. Luokan kirjoittamiseen meni paljon aikaa, mutta se onnistui mielestäni hyvin. Luokka käyttää ylivuotoketjua. Tämän kirjoittaminen oli mielenkiintoista, ja onnistui suhteellisen nopeasti.
+Botin perustoimintojen tekeminen on nyt aloitettu. Ensi viikon jälkeen botin pitäisi pystyä pelaamaan peliä, ellei jotain odottamatonta tapahdu. Botti ei siis osaa vielä liikkua, mutta sen toiminnallisuuden kirjoittaminen on aloitettu.
+Olen myös tutkinut tarkemmin sitä, miten esimerkki botti toteuttaa palvelin kommunikaation, ja mitä oman bottini täytyy tehdä, jotta se voi kommunikoida palvelimen kanssa.
+A* luokka toimii nyt oikein. Virhe oli pieni, mutta sen etsimiseen upposi aikaa. Kun pääsen testaamaan algoritmia isommilla verkoilla voin testata myös kuinka kauan sillä kestää. Enään tarvitsee vaihtaa kaikki käytetyt tietorakenteet omiksi, ja HashMapille tämä onkin jo tehty.
+
+Aikaa käytetty noin 15 tuntia
+
+
+Kysymyksiä:
+Onko mitään helppoa tapaa automatisoida isojen verkkojen luomista, ja silti tietää mikä on lyhin reitti kahden pisteen välillä? A* on vaikea luoda kattavia testejä ennenkuin tämä ongelma on ratkaistu.
+Tarvitseeko tietorakenteille kirjoittaa muita metodeja kuin ne joita tarvitsee projektiin?
+Tarvitseeko valmiille luokille vaihtaa tietorakenteet omiksi tietorakenteiksi?

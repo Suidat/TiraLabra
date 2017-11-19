@@ -7,6 +7,7 @@ public class MyHashMap<K, V> {
 
     private Entry<K,V>[] table; 
     private int capacity = 6;
+    private int size;
     
     @SuppressWarnings("unchecked")
     public MyHashMap(){
@@ -26,6 +27,7 @@ public class MyHashMap<K, V> {
         //check if the spot is empty. If so place new Entry there.
         if (table[hash] == null) {
             table[hash] = newEntry;
+            size++;
             return;
         }
 
@@ -49,6 +51,7 @@ public class MyHashMap<K, V> {
             prev=current;
             current=current.next;
         }
+        size++;
         //we have reached the end so just place newEntry here and nothing else is needed.
         prev.next=newEntry;
     }
@@ -67,6 +70,10 @@ public class MyHashMap<K, V> {
         }
 
         return null;//the correct one was not found.
+    }
+
+    public int getSize(){
+        return size;
     }
 
     public boolean containsKey(K key){ //this is basically the get method, but it returns boolean.

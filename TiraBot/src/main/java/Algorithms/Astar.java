@@ -1,5 +1,6 @@
 package Algorithms;
 
+import Structures.MyHashMap;
 import bot.Vertex;
 import dto.GameState;
 
@@ -19,9 +20,9 @@ public class Astar {
 
         Set<Vertex> closed = new HashSet<>();
         Queue<Holder> open = new PriorityQueue<>();
-        Map<Vertex, Vertex> cameFrom = new HashMap<>();
-        Map<GameState.Position, Integer> gscore = new HashMap<>();
-        Map<GameState.Position, Integer> fscore = new HashMap<>();
+        MyHashMap<Vertex, Vertex> cameFrom = new MyHashMap<>();
+        MyHashMap<GameState.Position, Integer> gscore = new MyHashMap<>();
+        MyHashMap<GameState.Position, Integer> fscore = new MyHashMap<>();
         for (Vertex v : boardGraph.values()) {
             fscore.put(v.getPosition(), Integer.MAX_VALUE);
             gscore.put(v.getPosition(), Integer.MAX_VALUE);
@@ -66,7 +67,7 @@ public class Astar {
     }//Astar()
 
     //Metodi tuottaa Listan, joka kulkee polun lopusta alkuun. Eli indeksi 0 on kohde.
-    private static List<Vertex> reconstructPath(Map<Vertex, Vertex> cameFrom, Vertex v){
+    private static List<Vertex> reconstructPath(MyHashMap<Vertex, Vertex> cameFrom, Vertex v){
         List<Vertex> total_path = new LinkedList<>();
         total_path.add(v);
         while (cameFrom.containsKey(v)){
@@ -77,7 +78,7 @@ public class Astar {
     }//reconstructPath
 
     //Heuristiikka perustuu tällä hetkellä Manhattan etäisyyteen.
-    private static int estimateDistance(GameState.Position s, GameState.Position v){
+    public static int estimateDistance(GameState.Position s, GameState.Position v){
         int xd = Math.abs(s.getX()-v.getX());
         int yd = Math.abs(s.getY()-v.getY());
         return xd+yd;
