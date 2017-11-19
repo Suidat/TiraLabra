@@ -1,4 +1,4 @@
-import Algoritmi.Astar;
+import Algorithms.Astar;
 import bot.Vertex;
 import dto.GameState;
 import org.junit.*;
@@ -53,11 +53,12 @@ public class AstarTest {
 
         assertEquals(new LinkedList<Vertex>(),Astar.findPath(pos, new HashMap<>(), pos));
     }
-    //Koska Astar ei toimi aivan oikein, ei tämä testi ole luotettava.
     @Test
     public void emptyFieldPathFound(){
         List<Vertex> list = Astar.findPath(start, testMap, end);
-        System.out.println(list.get(0).getPosition().getX()+" "+list.get(0).getPosition().getY());
-        assertEquals(1, list.size());
+        for (Vertex v:list) {
+            System.out.println(v.getPosition().getX()+":"+v.getPosition().getY());
+        }
+        assertEquals(3, list.size());
     }
 }
