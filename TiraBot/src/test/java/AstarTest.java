@@ -1,11 +1,13 @@
 import Algorithms.Astar;
+import bot.AdvancedGameState;
 import bot.Vertex;
+import com.google.gson.Gson;
 import dto.GameState;
 import org.junit.*;
-import java.util.HashMap;
-import java.util.LinkedList;
+
+import java.io.File;
+import java.io.FileReader;
 import java.util.List;
-import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,51 +16,91 @@ import static org.junit.Assert.assertEquals;
  */
 public class AstarTest {
 
-    private static Map<GameState.Position, Vertex> testMap;
+    private static AdvancedGameState testState;
     private static GameState.Position start;
     private static GameState.Position end;
 
-    @BeforeClass
-    public static void generateEasyTestMap(){
-        testMap = new HashMap<>();
-        List<GameState.Position> positions = new LinkedList<>();
-        for(int x = 0; x<2; x++){
-            for(int y = 0; y<2; y++){
-                GameState.Position p = new GameState.Position(x,y);
-                Vertex v = new Vertex(p, new LinkedList<Vertex>());
-                positions.add(p);
-                if(p.getY()==0 && p.getX()==0)
-                    start = p;
-                else if(p.getY()==1 && p.getX() == 1)
-                    end = p;
-                testMap.put(p,v);
-            }
-        }
-        testMap.get(positions.get(0)).getAdjacentVertices().add(testMap.get(positions.get(1)));
-        testMap.get(positions.get(0)).getAdjacentVertices().add(testMap.get(positions.get(2)));
-        testMap.get(positions.get(1)).getAdjacentVertices().add(testMap.get(positions.get(0)));
-        testMap.get(positions.get(1)).getAdjacentVertices().add(testMap.get(positions.get(3)));
-        testMap.get(positions.get(2)).getAdjacentVertices().add(testMap.get(positions.get(0)));
-        testMap.get(positions.get(2)).getAdjacentVertices().add(testMap.get(positions.get(3)));
-        testMap.get(positions.get(3)).getAdjacentVertices().add(testMap.get(positions.get(1)));
-        testMap.get(positions.get(3)).getAdjacentVertices().add(testMap.get(positions.get(2)));
+    public static void generateTestMap(String path){
 
+        String filePath = new File("").getAbsolutePath();
+        filePath = filePath.concat(path);
+        Gson mapper = new Gson();
+        GameState state;
+
+        try {
+            state = mapper.fromJson(new FileReader(filePath), GameState.class);
+
+        }catch (Exception e){
+            state = null;
+        }
+        testState = new AdvancedGameState(state);
     }
 
 
 
     @Test
     public void WhenBeginOnTargetReturnEmpty(){
-        GameState.Position pos = new GameState.Position(1,1);
-
-        assertEquals(new LinkedList<Vertex>(),Astar.findPath(pos, new HashMap<>(), pos));
+        generateTestMap("/src/test/resources/testGame");
+        end = testState.getMe().getPos();
+        start = testState.getMe().getPos();
+        for(int i = 0; i<10;i++) {
+            List<Vertex> list = Astar.findPath(start, testState, end);
+            assertEquals(0, list.size());
+        }
     }
     @Test
     public void emptyFieldPathFound(){
-        List<Vertex> list = Astar.findPath(start, testMap, end);
-        for (Vertex v:list) {
-            System.out.println(v.getPosition().getX()+":"+v.getPosition().getY());
+        generateTestMap("/src/test/resources/testGame");
+        end = new GameState.Position( 0,8);
+        start = testState.getMe().getPos();
+
+        long aikaAlussa = System.currentTimeMillis();
+        for(int i = 0; i<10;i++) {
+            List<Vertex> list = Astar.findPath(start, testState, end);
+            assertEquals(5, list.size());
         }
-        assertEquals(3, list.size());
+
+        long aikaLopussa = System.currentTimeMillis();
+        System.out.println("Operaatioon emptyFieldPathFound kului aikaa: " + (aikaLopussa - aikaAlussa) + "ms.");
     }
+
+    @Test
+    public void longPathFound(){
+        generateTestMap("/src/test/resources/testGame");
+        end = new GameState.Position( 17,10);
+        start = testState.getMe().getPos();
+
+        long aikaAlussa = System.currentTimeMillis();
+        for(int i = 0; i<10;i++) {
+            List<Vertex> list = Astar.findPath(start, testState, end);
+            assertEquals(22, list.size());
+        }
+
+        long aikaLopussa = System.currentTimeMillis();
+        System.out.println("Operaatioon longPathFound kului aikaa: " + (aikaLopussa - aikaAlussa) + "ms.");
+    }
+
+    @Test
+    public void noPathReturnsNull(){
+        generateTestMap("/src/test/resources/testGame");
+        end = new GameState.Position(0,0);
+        start = testState.getMe().getPos();
+        List<Vertex> list = Astar.findPath(start, testState, end);
+        assertEquals(null, list);
+    }
+    @Test
+    public void longPathTesting(){
+        generateTestMap("/src/test/resources/longTestGame");
+
+        end = new GameState.Position(17, 17);
+        start = testState.getMe().getPos();
+        long aikaAlussa = System.currentTimeMillis();
+        for(int i = 0; i<10;i++) {
+            List<Vertex> list = Astar.findPath(start, testState, end);
+            assertEquals(18 * 9 + 1, list.size());
+        }
+        long aikaLopussa = System.currentTimeMillis();
+        System.out.println("Operaatioon longPathTesting kului aikaa: " + (aikaLopussa - aikaAlussa) + "ms.");
+    }
+
 }

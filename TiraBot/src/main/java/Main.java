@@ -1,14 +1,9 @@
-import Algorithms.BasicBot;
+import Algorithms.BasicBotRunner;
+import Algorithms.Bots.BasicBot;
+import Algorithms.Bots.Bot;
 import com.google.api.client.http.GenericUrl;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.JsonFactory;
-import com.google.api.client.json.gson.GsonFactory;
-import com.google.gson.Gson;
-import com.sun.org.apache.xpath.internal.SourceTree;
+
 import dto.ApiKey;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
 
@@ -19,13 +14,8 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
-    private static final JsonFactory JSON_FACTORY = new GsonFactory();
-    private static final Gson gson = new Gson();
-    private static final Logger logger = LogManager.getLogger(Main.class);
-    private static final Logger gameStateLogger = LogManager.getLogger("gameStateLogger");
     private static Scanner scanner = new Scanner(System.in);
-    
+
     public static void main(String args[]) throws Exception {
         ApiKey apiKey;
         System.out.println("Please enter your key:");
@@ -59,17 +49,24 @@ public class Main {
                     System.out.println("List of valid bots: ");
                     System.out.println("1. basic");
                     //System.out.println("2. advanced");
+                    break;
             }
         }
 
-        System.out.println("Please enter api key:");
-        ApiKey key = new ApiKey(scanner.nextLine());
-
     }
     private static void setupBasic(GenericUrl url, ApiKey key){
-        //To do
-        BasicBot bot = new BasicBot(key, url);
+
+        Bot bot = new BasicBot();
+        BasicBotRunner botRunner = new BasicBotRunner(key, url, bot);
+        try {
+            botRunner.call();
+        }catch (Exception e){
+            System.out.println("Error in call");
+        }
+
     }
+
+
 
     public static class VindiniumUrl extends GenericUrl {
         private final static String TRAINING_URL = "http://vindinium.org/api/training";

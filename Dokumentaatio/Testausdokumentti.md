@@ -1,0 +1,1 @@
+Ohjelmaa testataan enimmäkseen A* algoritmiin liittyen, sillä muihin aiheisiin testaaminen on huomattavasti hankalampaa. Testaus tapahtuu kahden tekstitiedoston avulla, jotka löytyvät projektin kansiosta src/test/resources. 

@@ -50,5 +50,4 @@ public class HashMapTest {
         map.put(1,1);
         assertEquals(null, map.get(2));
     }
-
 }

@@ -25,4 +25,11 @@ public class Mine {
     }
 
     public void setOwner(GameState.Hero hero) { this.owner = hero; }
+
+    @Override
+    public String toString() {
+        return "Mine{" +
+                "position=" + position +
+                '}';
+    }
 }
