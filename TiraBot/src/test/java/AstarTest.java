@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 /**
  * Created by frestmau on 12.11.2017.
@@ -101,6 +102,23 @@ public class AstarTest {
         }
         long aikaLopussa = System.currentTimeMillis();
         System.out.println("Operaatioon longPathTesting kului aikaa: " + (aikaLopussa - aikaAlussa) + "ms.");
+    }
+
+    @Test
+    public void canMoveIntoAMine(){
+        generateTestMap("/src/test/resources/testGame");
+        end = new GameState.Position(3, 7);
+        start = testState.getMe().getPos();
+        List<Vertex> list = Astar.findPath(start, testState, end);
+        System.out.println(list.size());
+        for(Vertex v : list){
+            System.out.println(v.getPosition().toString());
+        }
+        assertNotEquals(null, list);
+
+
+
+
     }
 
 }

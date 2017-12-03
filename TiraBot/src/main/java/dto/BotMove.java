@@ -1,5 +1,7 @@
 package dto;
 
+import bot.Vertex;
+
 /**
  * This is the output of a SimpleBot.
  * <p/>
@@ -19,4 +21,5 @@ public enum BotMove {
     public String toString() {
         return direction;
     }
+
 }

@@ -29,3 +29,6 @@ target/
 dependency-reduced-pom.xml
 logs/
 TiraBot/src/main/java/Util/
+
+userKey
+

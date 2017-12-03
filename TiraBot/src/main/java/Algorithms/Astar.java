@@ -11,6 +11,8 @@ import java.util.*;
  * Created by frestmau on 12.11.2017.
  */
 public class Astar {
+
+
     public static List<Vertex> findPath(GameState.Position start, AdvancedGameState gameState, GameState.Position destination){
 
         //Check to see if starting location is the destination
@@ -41,6 +43,7 @@ public class Astar {
 
             //We have reached the destination and will create and return the path.
 
+
             if(current.equals(gameState.getBoardGraph().get(destination)))
                 return reconstructPath(cameFrom, gameState.getBoardGraph().get(destination));
 
@@ -51,7 +54,7 @@ public class Astar {
                     && !current.getPosition().equals(gameState.getMe().getPos()))
                 continue;
             
-            for (Vertex neighbour:current.getAdjacentVertices()) {
+            for (Vertex neighbour : current.getAdjacentVertices()) {
 
                 temp = new Holder(fscore.get(neighbour.getPosition()), neighbour);
                 //if the vertex has been handled skip it.
@@ -78,7 +81,6 @@ public class Astar {
     }//Astar()
 
 
-
     //Method provides a list that walks from the destination to the start. So index 0 is the destination
     private static List<Vertex> reconstructPath(MyHashMap<Vertex, Vertex> cameFrom, Vertex v){
         List<Vertex> total_path = new LinkedList<>();
@@ -90,12 +92,14 @@ public class Astar {
         return total_path;
     }//reconstructPath
 
+
     //Heuristic based on Manhattan-distance
     public static int estimateDistance(GameState.Position s, GameState.Position v){
         int xd = Math.abs(s.getX()-v.getX());
         int yd = Math.abs(s.getY()-v.getY());
         return xd+yd;
     }//estimateDistance
+
 
     //Class to make PriorityQueue comarison possible
     static class Holder implements Comparable<Holder>{

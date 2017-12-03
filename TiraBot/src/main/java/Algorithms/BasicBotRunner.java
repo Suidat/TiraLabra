@@ -65,6 +65,7 @@ public class BasicBotRunner implements Callable<GameState> {
                 logger.info("Taking turn " + gameState.getGame().getTurn());
                 BotMove direction;
 
+
                 try {
                     direction = bot.move(advancedGameState);
                 } catch (Throwable t) {
@@ -72,7 +73,7 @@ public class BasicBotRunner implements Callable<GameState> {
                     direction = BotMove.STAY;
                 }
                 Move move = new Move(apiKey.getKey(), direction.toString());
-
+                logger.info("Bot direction is "+direction);
 
                 HttpContent turn = new UrlEncodedContent(move);
                 HttpRequest turnRequest = REQUEST_FACTORY.buildPostRequest(new GenericUrl(gameState.getPlayUrl()), turn);

@@ -24,17 +24,22 @@ public class Main {
         GenericUrl url;
         System.out.println("Please enter game type ([1]training or [2]arena):");
         urlScan:while(true){
-            int i = Integer.parseInt(scanner.nextLine());
-            switch (i) {
-                case 1:
-                    url = VindiniumUrl.getTrainingUrl();
-                    break urlScan;
-                case 2:
-                    url = VindiniumUrl.getCompetitionUrl();
-                    break urlScan;
-                default:
-                    System.out.println("Please enter number 1 or 2");
+            try {
+                int i = Integer.parseInt(scanner.nextLine());
+                switch (i) {
+                    case 1:
+                        url = VindiniumUrl.getTrainingUrl();
+                        break urlScan;
+                    case 2:
+                        url = VindiniumUrl.getCompetitionUrl();
+                        break urlScan;
+                    default:
+                        System.out.println("Please enter number 1 or 2");
+                }
+            }catch(Exception e){
+                System.out.println("Please enter number 1 or 2");
             }
+
         }
 
         System.out.println("Please enter bot type:");
