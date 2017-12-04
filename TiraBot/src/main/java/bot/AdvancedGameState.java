@@ -180,4 +180,6 @@ public class AdvancedGameState {
     public GameState.Hero getMe() {
         return me;
     }
+
+
 }

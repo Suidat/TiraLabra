@@ -74,7 +74,7 @@ public class AstarTest {
         long aikaAlussa = System.currentTimeMillis();
         for(int i = 0; i<10;i++) {
             List<Vertex> list = Astar.findPath(start, testState, end);
-            assertEquals(22, list.size());
+            assertEquals(20, list.size());
         }
 
         long aikaLopussa = System.currentTimeMillis();

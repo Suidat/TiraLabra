@@ -65,6 +65,17 @@ public class GameState {
         return playUrl;
     }
 
+    @Override
+    public String toString() {
+        return "GameState{" +
+                "game=" + game +
+                "\n, hero=" + hero +
+                "\n, token='" + token + '\'' +
+                "\n, viewUrl='" + viewUrl + '\'' +
+                "\n, playUrl='" + playUrl + '\'' +
+                '}';
+    }
+
     @Immutable
     public static class Game {
 
@@ -124,6 +135,18 @@ public class GameState {
 
         public boolean isFinished() {
             return finished;
+        }
+
+        @Override
+        public String toString() {
+            return "Game{" +
+                    "id='" + id + '\'' +
+                    ", turn=" + turn +
+                    ", maxTurns=" + maxTurns +
+                    ", heroes=" + heroes +
+                    ", board=" + board +
+                    ", finished=" + finished +
+                    '}';
         }
     }
 
@@ -220,6 +243,22 @@ public class GameState {
         public boolean isCrashed() {
             return crashed;
         }
+
+        @Override
+        public String toString() {
+            return "Hero{" +
+                    "id=" + id +
+                    ", name='" + name + '\'' +
+                    ", userId='" + userId + '\'' +
+                    ", elo=" + elo +
+                    ", pos=" + pos +
+                    ", life=" + life +
+                    ", gold=" + gold +
+                    ", mineCount=" + mineCount +
+                    ", spawnPos=" + spawnPos +
+                    ", crashed=" + crashed +
+                    '}';
+        }
     }
 
     @Immutable
@@ -249,6 +288,14 @@ public class GameState {
 
         public int getSize() {
             return size;
+        }
+
+        @Override
+        public String toString() {
+            return "Board{\n" +
+                    "tiles='" + tiles + '\'' +
+                    ",\n size=" + size +
+                    '}';
         }
     }
 
@@ -303,9 +350,9 @@ public class GameState {
 
         @Override
         public String toString() {
-            return "Position{" +
+            return "Position{\n" +
                     "x=" + x +
-                    ", y=" + y +
+                    ",\n y=" + y +
                     '}';
         }
     }

@@ -14,6 +14,8 @@ import dto.Move;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.util.concurrent.Callable;
 
 /**
@@ -23,12 +25,7 @@ public class BasicBotRunner implements Callable<GameState> {
     private static final HttpTransport HTTP_TRANSPORT = new ApacheHttpTransport();
     private static final JsonFactory JSON_FACTORY = new GsonFactory();
     private static final HttpRequestFactory REQUEST_FACTORY =
-            HTTP_TRANSPORT.createRequestFactory(new HttpRequestInitializer() {
-                @Override
-                public void initialize(HttpRequest request) {
-                    request.setParser(new JsonObjectParser(JSON_FACTORY));
-                }
-            });
+            HTTP_TRANSPORT.createRequestFactory(request -> request.setParser(new JsonObjectParser(JSON_FACTORY)));
     private static final Logger logger = LogManager.getLogger(BasicBotRunner.class);
 
     private final ApiKey apiKey;
@@ -57,8 +54,19 @@ public class BasicBotRunner implements Callable<GameState> {
             request = REQUEST_FACTORY.buildPostRequest(gameUrl, content);
             request.setReadTimeout(0); // Wait forever to be assigned to a game
             response = request.execute();
+
             gameState = response.parseAs(GameState.class);
             logger.info("Game URL: {}", gameState.getViewUrl());
+
+            String filePath = new File("").getAbsolutePath();
+            filePath = filePath.concat("/src/main/resources/game");
+            try (FileWriter file = new FileWriter(filePath)) {
+                file.write(gameState.toString());
+                logger.info("Successfully Copied JSON Object to File...");
+            }catch(Exception e){
+                logger.info("Copying went wrong" + e.toString());
+            }
+
 
             advancedGameState = new AdvancedGameState(gameState);
             while (!gameState.getGame().isFinished() && !gameState.getHero().isCrashed()) {

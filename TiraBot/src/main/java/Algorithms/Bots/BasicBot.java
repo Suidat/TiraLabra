@@ -24,7 +24,7 @@ public class BasicBot implements Bot {
         System.out.println(d.getDestination().toString());
 
         System.out.println(d);
-        System.out.println(state.getMe().getPos());
+        System.out.println("Me = "+state.getMe().getPos());
         return generateMove(Astar.findPath(
                 state.getMe().getPos(), state, d.getDestination())
                 , state.getMe().getPos());
@@ -35,8 +35,9 @@ public class BasicBot implements Bot {
         if(path == null) {
             return BotMove.STAY;
         }
-        System.out.println(path.toString());
+
         Vertex target = path.get(path.size()-2);
+        System.out.println("Target = " + target.getPosition());
         return getDirection(me, target.getPosition());
     }
 

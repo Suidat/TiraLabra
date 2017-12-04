@@ -56,13 +56,10 @@ public class Astar {
             
             for (Vertex neighbour : current.getAdjacentVertices()) {
 
-                temp = new Holder(fscore.get(neighbour.getPosition()), neighbour);
+
                 //if the vertex has been handled skip it.
                 if(closed.contains(neighbour))
                     continue;
-
-                if(!open.contains(temp))
-                    open.add(temp);
 
                 int tmpscore = gscore.get(current.getPosition())+1;
 
@@ -72,6 +69,11 @@ public class Astar {
                 cameFrom.put(neighbour,current);
                 gscore.put(neighbour.getPosition(),tmpscore);
                 fscore.put(neighbour.getPosition(), tmpscore+estimateDistance(neighbour.getPosition(), destination));
+
+                temp = new Holder(fscore.get(neighbour.getPosition()), neighbour);
+                if(!open.contains(temp))
+                    open.add(temp);
+
             }//forEach
 
         }//while
@@ -112,7 +114,7 @@ public class Astar {
         }//Constructor
 
         public int compareTo(Holder holder) {
-            return Integer.compare(holder.fscore, this.fscore);
+            return Integer.compare(this.fscore, holder.fscore);
         }//compareTo
 
     }//Holder
