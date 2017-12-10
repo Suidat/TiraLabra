@@ -1,4 +1,5 @@
 import Algorithms.Astar;
+import Structures.MyLinkedList;
 import bot.AdvancedGameState;
 import bot.Vertex;
 import com.google.gson.Gson;
@@ -22,30 +23,27 @@ public class AstarTest {
     private static GameState.Position end;
 
     public static void generateTestMap(String path){
-
         String filePath = new File("").getAbsolutePath();
         filePath = filePath.concat(path);
         Gson mapper = new Gson();
-        GameState state;
+        GameState state = null;
 
         try {
             state = mapper.fromJson(new FileReader(filePath), GameState.class);
-
         }catch (Exception e){
-            state = null;
+            System.out.println("Error with filereading"+e.toString());
+            System.exit(123);
         }
         testState = new AdvancedGameState(state);
     }
-
-
 
     @Test
     public void WhenBeginOnTargetReturnEmpty(){
         generateTestMap("/src/test/resources/testGame");
         end = testState.getMe().getPos();
         start = testState.getMe().getPos();
-        for(int i = 0; i<10;i++) {
-            List<Vertex> list = Astar.findPath(start, testState, end);
+        for(int i = 0; i<300;i++) {
+            MyLinkedList<Vertex> list = Astar.findPath(start, testState, end);
             assertEquals(0, list.size());
         }
     }
@@ -56,13 +54,13 @@ public class AstarTest {
         start = testState.getMe().getPos();
 
         long aikaAlussa = System.currentTimeMillis();
-        for(int i = 0; i<10;i++) {
-            List<Vertex> list = Astar.findPath(start, testState, end);
+        for(int i = 0; i<300;i++) {
+            MyLinkedList<Vertex> list = Astar.findPath(start, testState, end);
             assertEquals(5, list.size());
         }
 
         long aikaLopussa = System.currentTimeMillis();
-        System.out.println("Operaatioon emptyFieldPathFound kului aikaa: " + (aikaLopussa - aikaAlussa) + "ms.");
+        System.out.println("Operaatioon emptyFieldPathFound kului aikaa: " + (aikaLopussa - aikaAlussa)/300 + "ms.");
     }
 
     @Test
@@ -72,13 +70,13 @@ public class AstarTest {
         start = testState.getMe().getPos();
 
         long aikaAlussa = System.currentTimeMillis();
-        for(int i = 0; i<10;i++) {
-            List<Vertex> list = Astar.findPath(start, testState, end);
+        for(int i = 0; i<300;i++) {
+            MyLinkedList<Vertex> list = Astar.findPath(start, testState, end);
             assertEquals(20, list.size());
         }
 
         long aikaLopussa = System.currentTimeMillis();
-        System.out.println("Operaatioon longPathFound kului aikaa: " + (aikaLopussa - aikaAlussa) + "ms.");
+        System.out.println("Operaatioon longPathFound kului aikaa: " + (aikaLopussa - aikaAlussa)/300 + "ms.");
     }
 
     @Test
@@ -86,7 +84,7 @@ public class AstarTest {
         generateTestMap("/src/test/resources/testGame");
         end = new GameState.Position(0,0);
         start = testState.getMe().getPos();
-        List<Vertex> list = Astar.findPath(start, testState, end);
+        MyLinkedList<Vertex> list = Astar.findPath(start, testState, end);
         assertEquals(null, list);
     }
     @Test
@@ -96,12 +94,12 @@ public class AstarTest {
         end = new GameState.Position(17, 17);
         start = testState.getMe().getPos();
         long aikaAlussa = System.currentTimeMillis();
-        for(int i = 0; i<10;i++) {
-            List<Vertex> list = Astar.findPath(start, testState, end);
+        for(int i = 0; i<300;i++) {
+            MyLinkedList<Vertex> list = Astar.findPath(start, testState, end);
             assertEquals(18 * 9 + 1, list.size());
         }
         long aikaLopussa = System.currentTimeMillis();
-        System.out.println("Operaatioon longPathTesting kului aikaa: " + (aikaLopussa - aikaAlussa) + "ms.");
+        System.out.println("Operaatioon longPathTesting kului aikaa: " + (aikaLopussa - aikaAlussa)/300 + "ms.");
     }
 
     @Test
@@ -109,16 +107,8 @@ public class AstarTest {
         generateTestMap("/src/test/resources/testGame");
         end = new GameState.Position(3, 7);
         start = testState.getMe().getPos();
-        List<Vertex> list = Astar.findPath(start, testState, end);
-        System.out.println(list.size());
-        for(Vertex v : list){
-            System.out.println(v.getPosition().toString());
-        }
+        MyLinkedList<Vertex> list = Astar.findPath(start, testState, end);
         assertNotEquals(null, list);
-
-
-
-
     }
 
 }

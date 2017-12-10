@@ -293,8 +293,8 @@ public class GameState {
         @Override
         public String toString() {
             return "Board{\n" +
-                    "tiles='" + tiles + '\'' +
-                    ",\n size=" + size +
+                    "size=" + size +
+                    ",\n  tiles='" + tiles + '\'' +
                     '}';
         }
     }
@@ -352,7 +352,7 @@ public class GameState {
         public String toString() {
             return "Position{\n" +
                     "x=" + x +
-                    ",\n y=" + y +
+                    ", y=" + y +
                     '}';
         }
     }

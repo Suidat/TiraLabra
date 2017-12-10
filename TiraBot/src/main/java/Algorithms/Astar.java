@@ -1,6 +1,9 @@
 package Algorithms;
 
 import Structures.MyHashMap;
+import Structures.MyHashSet;
+import Structures.MyLinkedList;
+import Structures.MyPriorityQueue;
 import bot.AdvancedGameState;
 import bot.Vertex;
 import dto.GameState;
@@ -13,14 +16,14 @@ import java.util.*;
 public class Astar {
 
 
-    public static List<Vertex> findPath(GameState.Position start, AdvancedGameState gameState, GameState.Position destination){
+    public static MyLinkedList<Vertex> findPath(GameState.Position start, AdvancedGameState gameState, GameState.Position destination){
 
         //Check to see if starting location is the destination
         if(start.equals(destination))
-            return new LinkedList<Vertex>();
+            return new MyLinkedList<>();
         
-        Set<Vertex> closed = new HashSet<>();
-        Queue<Holder> open = new PriorityQueue<>();
+        MyHashSet closed = new MyHashSet();
+        MyPriorityQueue open = new MyPriorityQueue();
         MyHashMap<Vertex, Vertex> cameFrom = new MyHashMap<>();
         MyHashMap<GameState.Position, Integer> gscore = new MyHashMap<>();
         MyHashMap<GameState.Position, Integer> fscore = new MyHashMap<>();
@@ -84,8 +87,8 @@ public class Astar {
 
 
     //Method provides a list that walks from the destination to the start. So index 0 is the destination
-    private static List<Vertex> reconstructPath(MyHashMap<Vertex, Vertex> cameFrom, Vertex v){
-        List<Vertex> total_path = new LinkedList<>();
+    private static MyLinkedList<Vertex> reconstructPath(MyHashMap<Vertex, Vertex> cameFrom, Vertex v){
+        MyLinkedList<Vertex> total_path = new MyLinkedList<>();
         total_path.add(v);
         while (cameFrom.containsKey(v)){
             v = cameFrom.get(v);
@@ -104,18 +107,25 @@ public class Astar {
 
 
     //Class to make PriorityQueue comarison possible
-    static class Holder implements Comparable<Holder>{
-        int fscore;
-        Vertex vertex;
+     public static class Holder implements Comparable<Holder>{
+        public int fscore;
+        public Vertex vertex;
 
         public Holder(int f, Vertex v) {
             this.fscore = f;
             this.vertex = v;
         }//Constructor
 
+        @Override
+        public int hashCode() {
+            return (int) Math.pow(fscore, (vertex.getPosition().getX()+vertex.getPosition().getY()));
+
+        }
+
         public int compareTo(Holder holder) {
             return Integer.compare(this.fscore, holder.fscore);
         }//compareTo
+
 
     }//Holder
 

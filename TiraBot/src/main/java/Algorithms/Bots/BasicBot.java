@@ -3,6 +3,7 @@ package Algorithms.Bots;
 import Algorithms.Astar;
 import Algorithms.Bots.Logic.Decision;
 import Algorithms.Bots.Logic.DecisionMaker;
+import Structures.MyLinkedList;
 import bot.AdvancedGameState;
 import bot.Vertex;
 import dto.BotMove;
@@ -31,7 +32,7 @@ public class BasicBot implements Bot {
 
     }
 
-    private BotMove generateMove(List<Vertex> path, GameState.Position me){
+    private BotMove generateMove(MyLinkedList<Vertex> path, GameState.Position me){
         if(path == null) {
             return BotMove.STAY;
         }

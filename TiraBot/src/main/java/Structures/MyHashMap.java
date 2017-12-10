@@ -1,17 +1,21 @@
 package Structures;
 
+
+import java.sql.Statement;
+
 /**
  * Created by frestmau on 19.11.2017.
  */
 public class MyHashMap<K, V> {
 
-    private Entry<K,V>[] table; 
-    private int capacity = 6;
+    private Entry<K,V>[] table;
+    private int capacity = 47;
     private int size;
     
     @SuppressWarnings("unchecked")
     public MyHashMap(){
         table = new Entry[capacity];
+        size = 0;
     }
 
     private int hash(K key){//Decides the entry's place in the table.
@@ -54,6 +58,8 @@ public class MyHashMap<K, V> {
         size++;
         //we have reached the end so just place newEntry here and nothing else is needed.
         prev.next=newEntry;
+
+
     }
 
     public V get(K key){
@@ -72,7 +78,7 @@ public class MyHashMap<K, V> {
         return null;//the correct one was not found.
     }
 
-    public int getSize(){
+    public int size(){
         return size;
     }
 

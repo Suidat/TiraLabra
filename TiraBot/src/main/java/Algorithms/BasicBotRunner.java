@@ -92,7 +92,7 @@ public class BasicBotRunner implements Callable<GameState> {
 
             }
         }catch(Exception e){
-            logger.error("Something went wrong during the game");
+            logger.error("Something went wrong during the game", e);
         }
 
         logger.info("Game Over");
