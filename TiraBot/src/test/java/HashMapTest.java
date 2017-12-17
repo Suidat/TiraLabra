@@ -51,29 +51,42 @@ public class HashMapTest {
         map.put(1, 1);
         assertEquals(null, map.get(2));
     }
-    
+
+
     @Test
     public void speedTest() {
         System.out.println("HashMap");
+        map = new MyHashMap<>(10000*2);
         HashMap<Integer, Integer> map1 = new HashMap<>();
         for (int n = 0; n < 10; n++) {
+            long myAddTime = System.nanoTime();
             for (int i = n * 1000; i < 1000 * (n + 1); i++) {
                 map.put(i, n);
-                map1.put(i, n);
-
             }
+            myAddTime = (System.nanoTime() - myAddTime)/1000;
+
+            long javaAddTime = System.nanoTime();
+            for (int i = n * 1000; i < 1000 * (n + 1); i++) {
+                map1.put(i, n);
+            }
+            javaAddTime = (System.nanoTime() - javaAddTime)/1000;
+
             System.out.println(map.size());
-            long startJava = System.nanoTime();
-            System.out.println(map1.get(977 * n));
-            long endJava = System.nanoTime();
-            long startMe = System.nanoTime();
-            System.out.println(map.get(977 * n));
-            long endMe = System.nanoTime();
+            long javaGetTime = System.nanoTime();
+            map1.get(357 * n);
+            javaGetTime = System.nanoTime() - javaGetTime;
+            long myGetTime = System.nanoTime();
+            map.get(357 * n);
+            myGetTime = System.nanoTime()- myGetTime;
 
+            System.out.println("Java time to add = " + javaAddTime+"ns");
+            System.out.println("My time to add = " + myAddTime+"ns");
+            //System.out.println("faster = "+(myAddTime < javaAddTime));
 
-            System.out.println("Java time to find = " + (endJava - startJava));
-            System.out.println("My time to find = " + (endMe - startMe));
-            System.out.println("faster = "+((endMe - startMe) < (endJava - startJava)));
+            System.out.println("Java time to find = " + javaGetTime+"ns");
+            System.out.println("My time to find = " + myGetTime+"ns");
+            //System.out.println("faster = "+(myGetTime < javaGetTime));
+
 
             System.out.println();
         }

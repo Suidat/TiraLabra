@@ -1,1 +1,2 @@
 Nämä luokat eivät kuulu harjoitustyön aihealueeseen. Luokat mahdollistavat kommunikaation palvelimen kanssa, ja käsittelevät sieltä tulevat JSON tiedostot.
+Luokat on otettu täältä: https://github.com/bstempi/vindinium-client

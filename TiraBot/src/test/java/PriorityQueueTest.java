@@ -49,27 +49,44 @@ public class PriorityQueueTest {
         Vertex v = new Vertex();
 
         for (int n = 0; n < 10; n++) {
-            queue1.add(new Holder(0, v));
-            queue.add(new Holder(0, v));
-            for (int i = 1000*(n+1); i > 1000*n; i--) {
+
+            long myAddTime = System.nanoTime();
+            for (int i = 0; i < 1000; i++) {
                 Holder h = new Holder(i, v);
-                queue1.add(h);
                 queue.add(h);
             }
+            myAddTime = (System.nanoTime()-myAddTime)/1000;
+
+            long javaAddTime = System.nanoTime();
+            for (int i = 0; i < 1000; i++) {
+                Holder h = new Holder(i, v);
+                queue1.add(h);
+
+            }
+            javaAddTime = (System.nanoTime()-javaAddTime)/1000;
+
             System.out.println(queue.size());
 
-            long startJava = System.nanoTime();
-            System.out.println(queue1.poll().fscore);
-            long endJava = System.nanoTime();
-            long startMe = System.nanoTime();
-            System.out.println(queue.poll().fscore);
-            long endMe = System.nanoTime();
+            long javaPollTime = System.nanoTime();
+            queue1.poll();
+            javaPollTime = (System.nanoTime() - javaPollTime);
+            long myPollTime = System.nanoTime();
+            queue.poll();
+            myPollTime = (System.nanoTime() - myPollTime);
 
-            System.out.println("Java time to find = " + (endJava - startJava));
-            System.out.println("My time to find = " + (endMe - startMe));
-            System.out.println("faster = "+((endMe - startMe) < (endJava - startJava)));
+            System.out.println("Java time to add = " + javaAddTime+"ns");
+            System.out.println("My time to add = " + myAddTime+"ns");
+            System.out.println("faster = "+(myAddTime < javaAddTime));
+
+
+            System.out.println("Java time to find = " + javaPollTime+"ns");
+            System.out.println("My time to find = " + myPollTime+"ns");
+            System.out.println("faster = "+(myPollTime < javaPollTime));
 
             System.out.println();
+
+            queue1.add(new Holder(0, v));
+            queue.add(new Holder(0, v));
         }
         System.out.println();
 

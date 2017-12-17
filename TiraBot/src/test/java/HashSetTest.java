@@ -39,31 +39,48 @@ public class HashSetTest {
 
     @Test
     public void speedTest() {
-        System.out.println("HashSet");
+        System.out.println("HashSet\n");
         HashSet<Vertex> set1 = new HashSet<>();
         ArrayList<Vertex>list = new ArrayList<>();
+        set = new MyHashSet(10000*2);
+
 
         for (int n = 0; n < 10; n++) {
+
             Vertex v = null;
+
+            long myAddTime = System.nanoTime();
             for (int i = 0; i < 1000; i++) {
                 v = new Vertex(new GameState.Position(i, i), list);
                 set.add(v);
-                set1.add(v);
-                list.add(v);
             }
+            myAddTime = (System.nanoTime()-myAddTime)/1000;
+
+            long javaAddTime = System.nanoTime();
+            for (int i = 0; i < 1000; i++) {
+                v = new Vertex(new GameState.Position(i, i), list);
+                set1.add(v);
+
+            }
+            javaAddTime = (System.nanoTime()-javaAddTime)/1000;
+
+            list.add(v);
 
             System.out.println(set.size());
-            long startJava = System.nanoTime();
-            System.out.println(set1.contains(v));
-            long endJava = System.nanoTime();
-            long startMe = System.nanoTime();
-            System.out.println(set.contains(v));
-            long endMe = System.nanoTime();
+            long javaContainsTime = System.nanoTime();
+            set1.contains(v);
+            javaContainsTime = System.nanoTime()-javaContainsTime;
+            long myContainsTime = System.nanoTime();
+            set.contains(v) ;
+            myContainsTime = System.nanoTime() - myContainsTime;
 
+            System.out.println("Java time to add = " + javaAddTime+"ns");
+            System.out.println("My time to add = " + myAddTime+"ns");
+            //System.out.println("faster = "+(myAddTime < javaAddTime));
 
-            System.out.println("Java time to find = " + (endJava - startJava));
-            System.out.println("My time to find = " + (endMe - startMe));
-            System.out.println("faster = "+((endMe - startMe) < (endJava - startJava)));
+            System.out.println("Java time to find = " + javaContainsTime+"ns");
+            System.out.println("My time to find = " + myContainsTime+"ns");
+            //System.out.println("faster = "+(myContainsTime<javaContainsTime));
 
             System.out.println();
         }

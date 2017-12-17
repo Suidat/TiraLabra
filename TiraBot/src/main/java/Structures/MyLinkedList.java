@@ -2,50 +2,77 @@ package Structures;
 
 import java.util.Iterator;
 
-public class MyLinkedList<V> implements Iterable<V>{
+/**
+ * Class that implements a linked list.
+ *
+ * @param <V> The class of objects to be placed into this linked list.
+ */
+public class MyLinkedList<V> implements Iterable<V> {
 
-    V value;
-    MyLinkedList<V> next;
-    int size;
-    MyLinkedList<V> end;
+    private V value;
+    private MyLinkedList<V> next;
+    private int size;
+    private MyLinkedList<V> end;
 
-    public MyLinkedList (){
+    /**
+     * Creates a new and empty linked list.
+     */
+    public MyLinkedList() {
         value = null;
         next = null;
         size = 0;
         end = this;
     }
 
-    private MyLinkedList (V value){
+    /**
+     * A private method, that adds a new object into the list.
+     *
+     * @param value The object to be added into this list.
+     */
+    private MyLinkedList(V value) {
         this.value = value;
         next = null;
         size = 1;
         end = this;
     }
 
-    public void add(V v){
-        this.size = this.size+1;
-
-        this.end.next = new MyLinkedList<>(v);
+    /**
+     * Adds the specified object at the end of the list
+     *
+     * @param v Object to be added.
+     */
+    public void add(V v) {
+        this.size = this.size + 1;
+        end.next = new MyLinkedList<>(v);
         this.end = end.next;
-
     }
 
-    public V get(int i){
+    /**
+     * Returns the object at the specified index.
+     *
+     * @param i Index of object between 0 and the size of the list.
+     * @return The object at index;
+     * if the index is out of bounds returns null.
+     */
+    public V get(int i) {
 
-        if(i<0||i>size){
+        if (i < 0 || i > size) {
             return null;
         }
-
         MyLinkedList<V> current = this;
+            for (int x = 0; x <= i; x++) {
+                current = current.next;
+            }
 
-        for(int x = 0; x<=i; x++){
-            current = current.next;
-        }
         return current.value;
     }
 
-    public int size(){
+    /**
+     * returns the number of objects in the queue
+     *
+     * @return The amount of objects int he queue.
+     */
+    public int size() {
         return size;
     }
 
@@ -55,13 +82,13 @@ public class MyLinkedList<V> implements Iterable<V>{
         return new MyIterator();
     }
 
-    class MyIterator implements Iterator<V>{
+    class MyIterator implements Iterator<V> {
 
         private int index;
 
         @Override
         public boolean hasNext() {
-            return index<size();
+            return index < size();
         }
 
         @Override

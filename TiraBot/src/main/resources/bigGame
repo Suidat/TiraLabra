@@ -1,0 +1,14 @@
+GameState{game=Game{id='b7o9r7oj', turn=0, maxTurns=1200
+heroes=[
+Hero{id=1, name='TiraBot', userId='gssflqsj', elo=1200, pos=Position{x=0, y=3}, life=100, gold=0, mineCount=0, spawnPos=Position{x=0, y=3}, crashed=false}
+Hero{id=2, name='random', userId='null', elo=0, pos=Position{x=13, y=3}, life=100, gold=0, mineCount=0, spawnPos=Position{x=13, y=3}, crashed=false}
+Hero{id=3, name='random', userId='null', elo=0, pos=Position{x=13, y=10}, life=100, gold=0, mineCount=0, spawnPos=Position{x=13, y=10}, crashed=false}
+Hero{id=4, name='random', userId='null', elo=0, pos=Position{x=0, y=10}, life=100, gold=0, mineCount=0, spawnPos=Position{x=0, y=10}, crashed=false}]
+board=Board{
+size=14
+tiles='    $-@1  ########  @4$-    []          ####          []      ####        ####        ##  ##            ##  ##  ##  $-    $-####$-    $-  ####        ########        ##            $-$-                        $-$-            ##        ########        ####  $-    $-####$-    $-  ##  ##  ##            ##  ##        ####        ####      []          ####          []    $-@2  ########  @3$-    '}, finished=false}
+hero=
+Hero{id=1, name='TiraBot', userId='gssflqsj', elo=1200, pos=Position{x=0, y=3}, life=100, gold=0, mineCount=0, spawnPos=Position{x=0, y=3}, crashed=false}
+token='wigj'
+viewUrl='http://vindinium.org/b7o9r7oj'
+playUrl='http://vindinium.org/api/b7o9r7oj/wigj/play'}

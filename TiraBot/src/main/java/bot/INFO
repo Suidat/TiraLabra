@@ -1,2 +1,3 @@
-Nämä luokat eivät kuulu harjoitustyön aihealueeseen. Luokat mahdollistavat kommunikaation palvelimen kanssa, ja käsittelevät sieltä tulevat JSON tiedostot.
-Näitä luokkia tullaan vielä muuttamaan.
+Nämä luokat eivät kuulu harjoitustyön aihealueeseen. Luokat ovat AdvancedGameStatea varten.
+Luokat on otettu täältä: https://github.com/bstempi/vindinium-client
+Niihin on lisätty joitain asioita, kuten esim toString() metodi ja Vertex luokkaan on lisätty hashCode() metodi.

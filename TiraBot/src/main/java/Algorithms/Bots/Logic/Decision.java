@@ -1,6 +1,5 @@
 package Algorithms.Bots.Logic;
 
-import bot.Vertex;
 import dto.GameState;
 
 public class Decision {
@@ -8,7 +7,13 @@ public class Decision {
     private GameState.Position destination;
     public String type;
 
-    public Decision(GameState.Position destination, int priority, String type){
+    /**
+     * An object that contains the destination and priority of a decision.
+     * @param destination The destination for this action.
+     * @param priority How important the action is. Lower numbers are of higher importance.
+     * @param type What type of action this is.
+     */
+    public Decision(GameState.Position destination, int priority, String type) {
         this.destination = destination;
         this.priority = priority;
         this.type = type;
@@ -18,11 +23,15 @@ public class Decision {
         return destination;
     }
 
-    public String getType(){
+    /**
+     * returns the type of move.
+     * @return
+     */
+    public String getType() {
         return type;
     }
-    
-    public int getPriority(){
+
+    public int getPriority() {
         return priority;
     }
 

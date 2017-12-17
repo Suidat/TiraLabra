@@ -11,7 +11,6 @@ import java.util.Scanner;
  * Created by frestmau on 11.11.2017.
  */
 
-
 public class Main {
 
     private static Scanner scanner = new Scanner(System.in);
@@ -23,7 +22,7 @@ public class Main {
 
         GenericUrl url;
         System.out.println("Please enter game type ([1]training or [2]arena):");
-        urlScan:while(true){
+        urlScan:while(true) {
             try {
                 int i = Integer.parseInt(scanner.nextLine());
                 switch (i) {
@@ -71,20 +70,33 @@ public class Main {
 
     }
 
-
-
-    public static class VindiniumUrl extends GenericUrl {
+    /**
+     * A class to hold the different Vindinium game urls.
+     */
+    public static class VindiniumUrl extends GenericUrl{
         private final static String TRAINING_URL = "http://vindinium.org/api/training";
         private final static String COMPETITION_URL = "http://vindinium.org/api/arena";
 
+        /**
+         * Creates the object.
+         * @param encodedUrl
+         */
         public VindiniumUrl(String encodedUrl) {
             super(encodedUrl);
         }
 
+        /**
+         * Returns the url for a arena.
+         * @return The url of arena games.
+         */
         public static VindiniumUrl getCompetitionUrl() {
             return new VindiniumUrl(COMPETITION_URL);
         }
 
+        /**
+         * Returns the url for training.
+         * @return The url for training games.
+         */
         public static VindiniumUrl getTrainingUrl() {
             return new VindiniumUrl(TRAINING_URL);
         }

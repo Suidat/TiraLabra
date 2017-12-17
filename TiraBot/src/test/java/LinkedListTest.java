@@ -42,22 +42,36 @@ public class LinkedListTest {
         System.out.println("LinkedList");
         LinkedList<Integer> list1 = new LinkedList<>();
         for(int n = 0; n<10; n++){
-            for(int i = 0; i<1000; i++){
-                list.add(i);
-                list1.add(i);
+
+            long myAddTime = System.nanoTime();
+            for (int i = 1; i <= 1000; i++) {
+                list.add(i*(n+1));
             }
+            myAddTime = (System.nanoTime()-myAddTime)/1000;
+
+            long javaAddTime = System.nanoTime();
+            for (int i = 1; i <= 1000; i++) {
+                list1.add(i*(n+1));
+
+            }
+            javaAddTime = (System.nanoTime()-javaAddTime)/1000;
 
             System.out.println(list.size());
-            long startJava = System.nanoTime();
-            System.out.println(list1.get(999*n));
-            long endJava = System.nanoTime();
-            long startMe = System.nanoTime();
-            System.out.println(list.get(999*n));
-            long endMe = System.nanoTime();
+            long javaGetTime = System.nanoTime();
+            System.out.println(list1.get(500*(n+1)));
+            javaGetTime = System.nanoTime() - javaGetTime;
+            long myGetTime = System.nanoTime();
+            System.out.println(list.get(500*(n+1)));
+            myGetTime = System.nanoTime() - myGetTime;
 
-            System.out.println("Java time to find = " + (endJava - startJava));
-            System.out.println("My time to find = " + (endMe - startMe));
-            System.out.println("faster = "+((endMe - startMe) < (endJava - startJava)));
+
+            System.out.println("Java time to add = " + javaAddTime+"ns");
+            System.out.println("My time to add = " + myAddTime+"ns");
+            System.out.println("faster = "+(myAddTime < javaAddTime));
+
+            System.out.println("Java time to find = " + javaGetTime+"ns");
+            System.out.println("My time to find = " + myGetTime+"ns");
+            System.out.println("faster = "+(myGetTime<javaGetTime));
             System.out.println();
         }
         System.out.println();

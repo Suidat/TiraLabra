@@ -1,27 +1,6 @@
-GameState{game=Game{id='yf08qlj9', turn=0, maxTurns=1200, heroes=[Hero{id=1, name='TiraBot', userId='gssflqsj', elo=1200, pos=Position{
-x=2,
- y=1}, life=100, gold=0, mineCount=0, spawnPos=Position{
-x=2,
- y=1}, crashed=false}, Hero{id=2, name='random', userId='null', elo=0, pos=Position{
-x=7,
- y=1}, life=100, gold=0, mineCount=0, spawnPos=Position{
-x=7,
- y=1}, crashed=false}, Hero{id=3, name='random', userId='null', elo=0, pos=Position{
-x=7,
- y=8}, life=100, gold=0, mineCount=0, spawnPos=Position{
-x=7,
- y=8}, crashed=false}, Hero{id=4, name='random', userId='null', elo=0, pos=Position{
-x=2,
- y=8}, life=100, gold=0, mineCount=0, spawnPos=Position{
-x=2,
- y=8}, crashed=false}], board=Board{
-tiles='####################$-  ############  $-##@1  ##[][]##  @4####                ######    ####    ########    ####    ######                ####@2  ##[][]##  @3##$-  ############  $-####################',
- size=10}, finished=false}
-, hero=Hero{id=1, name='TiraBot', userId='gssflqsj', elo=1200, pos=Position{
-x=2,
- y=1}, life=100, gold=0, mineCount=0, spawnPos=Position{
-x=2,
- y=1}, crashed=false}
-, token='ydrd'
-, viewUrl='http://vindinium.org/yf08qlj9'
-, playUrl='http://vindinium.org/api/yf08qlj9/ydrd/play'}
+GameState{game=Game{id='4838iq65', turn=0, maxTurns=1200, heroes=[Hero{id=1, name='TiraBot', userId='gssflqsj', elo=1200, pos=x=8, y=1, life=100, gold=0, mineCount=0, spawnPos=x=8, y=1, crashed=false}, Hero{id=2, name='random', userId='null', elo=0, pos=x=13, y=1, life=100, gold=0, mineCount=0, spawnPos=x=13, y=1, crashed=false}, Hero{id=3, name='random', userId='null', elo=0, pos=x=13, y=20, life=100, gold=0, mineCount=0, spawnPos=x=13, y=20, crashed=false}, Hero{id=4, name='random', userId='null', elo=0, pos=x=8, y=20, life=100, gold=0, mineCount=0, spawnPos=x=8, y=20, crashed=false}], board=Board{size=22
+tiles='##############      ####      ############################    ########    ##############  ####$-######  ############  ######$-####            ##    $-########$-    ##          $-$-              $-####$-              $-$-##    ##    ####################    ##    ####    ##      $-############$-      ##    ##      ##  ####  $-########$-  ####  ##        @1####          ##[][]##          ####@4  ##    ##        ##        ##        ##    ######  ########                ########  ########  ########                ########  ######    ##        ##        ##        ##    ##  @2####          ##[][]##          ####@3        ##  ####  $-########$-  ####  ##      ##    ##      $-############$-      ##    ####    ##    ####################    ##    ##$-$-              $-####$-              $-$-          ##    $-########$-    ##            ####$-######  ############  ######$-####  ##############    ########    ############################      ####      ##############'}, finished=false}
+, hero=Hero{id=1, name='TiraBot', userId='gssflqsj', elo=1200, pos=x=8, y=1, life=100, gold=0, mineCount=0, spawnPos=x=8, y=1, crashed=false}
+, token='24hz'
+, viewUrl='http://vindinium.org/4838iq65'
+, playUrl='http://vindinium.org/api/4838iq65/24hz/play'}

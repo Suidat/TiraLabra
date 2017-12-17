@@ -18,9 +18,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.concurrent.Callable;
 
-/**
- * Created by frestmau on 19.11.2017.
- */
 public class BasicBotRunner implements Callable<GameState> {
     private static final HttpTransport HTTP_TRANSPORT = new ApacheHttpTransport();
     private static final JsonFactory JSON_FACTORY = new GsonFactory();
@@ -32,20 +29,31 @@ public class BasicBotRunner implements Callable<GameState> {
     private final GenericUrl gameUrl;
     private final Bot bot;
 
-    public BasicBotRunner(ApiKey key, GenericUrl url, Bot bot){
+    /**
+     * Initializes the bot and server communication.
+     * @param key The unique key associated with this bot.
+     * @param url The game url.
+     * @param bot What type of bot is used.
+     */
+    public BasicBotRunner(ApiKey key, GenericUrl url, Bot bot) {
         this.apiKey = key;
         this.gameUrl = url;
         this.bot = bot;
     }
 
+
+    /**
+     * Method for the game loop. This loop controls the bot, and server communication.
+     *
+     * @return The game state at the end of the game.
+     */
     @Override
-    public GameState call() throws Exception {
-        HttpContent content ;
+    public GameState call(){
+        HttpContent content;
         HttpRequest request;
         HttpResponse response;
         GameState gameState = null;
         AdvancedGameState advancedGameState;
-
 
         try {
             // Initial request
@@ -58,14 +66,16 @@ public class BasicBotRunner implements Callable<GameState> {
             gameState = response.parseAs(GameState.class);
             logger.info("Game URL: {}", gameState.getViewUrl());
 
+
             String filePath = new File("").getAbsolutePath();
             filePath = filePath.concat("/src/main/resources/game");
             try (FileWriter file = new FileWriter(filePath)) {
                 file.write(gameState.toString());
                 logger.info("Successfully Copied JSON Object to File...");
-            }catch(Exception e){
+            } catch (Exception e) {
                 logger.info("Copying went wrong" + e.toString());
             }
+
 
 
             advancedGameState = new AdvancedGameState(gameState);
@@ -81,7 +91,7 @@ public class BasicBotRunner implements Callable<GameState> {
                     direction = BotMove.STAY;
                 }
                 Move move = new Move(apiKey.getKey(), direction.toString());
-                logger.info("Bot direction is "+direction);
+                logger.info("Bot direction is " + direction);
 
                 HttpContent turn = new UrlEncodedContent(move);
                 HttpRequest turnRequest = REQUEST_FACTORY.buildPostRequest(new GenericUrl(gameState.getPlayUrl()), turn);
@@ -91,8 +101,17 @@ public class BasicBotRunner implements Callable<GameState> {
                 advancedGameState = new AdvancedGameState(advancedGameState, gameState);
 
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             logger.error("Something went wrong during the game", e);
+        }
+
+        String filePath = new File("").getAbsolutePath();
+        filePath = filePath.concat("/src/main/resources/gameEnd");
+        try (FileWriter file = new FileWriter(filePath)) {
+            file.write(gameState.toString());
+            logger.info("Successfully Copied JSON Object to File...");
+        } catch (Exception e) {
+            logger.info("Copying went wrong" + e.toString());
         }
 
         logger.info("Game Over");
